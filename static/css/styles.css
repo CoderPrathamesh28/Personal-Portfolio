@@ -1176,6 +1176,37 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1.2rem;
 }
 
+/* --- FLOATING ADMIN BUTTON --- */
+.floating-admin-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    transition: var(--transition-smooth);
+    z-index: 80;
+    border: 2px solid transparent;
+}
+
+.floating-admin-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.6), var(--shadow-glow);
+}
+
+.floating-admin-btn:active {
+    transform: translateY(-2px) scale(1.05);
+}
+
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 992px) {
     .hero-grid {
@@ -1238,5 +1269,14 @@ h1, h2, h3, h4, h5, h6 {
     .form-row {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+    
+    /* Floating admin button responsive */
+    .floating-admin-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
 }
