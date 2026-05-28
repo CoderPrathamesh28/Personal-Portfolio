@@ -77,22 +77,19 @@ def init_db():
         skills_data = [
             # Frontend
             ("HTML5 & CSS3", "Frontend", 95),
-            ("JavaScript (ES6+)", "Frontend", 90),
-            ("React.js", "Frontend", 80),
-            ("Tailwind CSS", "Frontend", 85),
+            ("JavaScript", "Frontend", 70),
+            ("React.js", "Frontend", 70),
             # Backend
-            ("Python & Flask", "Backend", 85),
-            ("Node.js & Express", "Backend", 75),
-            ("Django", "Backend", 70),
+            ("Python & Flask/Django", "Backend", 85),
+            ("C & C++", "Backend", 90),
+            ("Java", "Backend", 80),
+            ("Node.js & Express", "Backend", 65),
             # Database
-            ("MySQL / PostgreSQL", "Database", 85),
-            ("MongoDB / NoSQL", "Database", 70),
-            ("SQLite", "Database", 90),
+            ("MySQL", "Database", 80),
+            ("MySQL Workbench", "Database", 85),
+            ("SQLite", "Database", 80),
             # Tools
-            ("Git & GitHub", "Tools", 90),
-            ("Docker", "Tools", 65),
-            ("Vercel & Render", "Tools", 80),
-            ("RESTful APIs", "Tools", 90)
+            ("Git & GitHub", "Tools", 80),
         ]
         cursor.executemany(
             "INSERT INTO skills (name, category, proficiency) VALUES (%s, %s, %s)",
