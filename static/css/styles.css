@@ -112,6 +112,7 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+    min-width: 240px;
 }
 
 /* --- LAYOUT UTILITIES --- */
@@ -314,7 +315,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-subtitle {
     font-family: var(--font-outfit);
     color: var(--primary);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -322,11 +323,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 1.1;
     font-weight: 800;
-    margin-bottom: 1.5rem;
-    min-height: 2.2em; /* Reserve vertical space for up to 2 lines of text to prevent vertical shifting during typing */
+    margin-bottom: 1rem;
+    min-height: 1em; /* Reserve vertical space for up to 2 lines of text to prevent vertical shifting during typing */
 }
 
 .hero-desc {
