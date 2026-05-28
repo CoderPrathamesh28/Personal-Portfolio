@@ -2,6 +2,7 @@ import os
 import mysql.connector
 from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash
+from database import get_db_connection
 
 # Load environment variables
 load_dotenv()
@@ -10,29 +11,38 @@ DB_HOST = os.getenv("DB_HOST", "127.0.0.1")
 DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 DB_NAME = os.getenv("DB_NAME", "portfolio_db")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 def init_db():
     print("Connecting to MySQL...")
-    # Connect without database first to ensure database exists
-    conn = mysql.connector.connect(
-        host=DB_HOST,
-        user=DB_USER,
-        password=DB_PASSWORD
-    )
-    cursor = conn.cursor()
     
-    # Create database if not exists
-    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
-    print(f"Database '{DB_NAME}' verified/created.")
-    conn.close()
+    if DATABASE_URL:
+        # Cloud/Prod setup: connect directly to pre-created database
+        print("DATABASE_URL detected. Connecting directly to cloud database...")
+        conn = get_db_connection()
+    else:
+        # Local setup: connect without database first to ensure database exists
+        try:
+            conn = mysql.connector.connect(
+                host=DB_HOST,
+                user=DB_USER,
+                password=DB_PASSWORD
+            )
+            cursor = conn.cursor()
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
+            print(f"Database '{DB_NAME}' verified/created.")
+            conn.close()
+        except Exception as e:
+            print(f"Warning: Could not verify database creation: {e}. Trying direct connection...")
+            
+        # Connect to local database
+        conn = mysql.connector.connect(
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME
+        )
     
-    # Connect to the specific database
-    conn = mysql.connector.connect(
-        host=DB_HOST,
-        user=DB_USER,
-        password=DB_PASSWORD,
-        database=DB_NAME
-    )
     cursor = conn.cursor()
     
     # Read schema.sql

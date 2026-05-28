@@ -21,20 +21,36 @@ def get_db_connection():
         # Parse DATABASE_URL if provided (e.g. on Vercel/Render)
         # Format: mysql://user:pass@host:port/dbname
         try:
-            from urllib.parse import urlparse
+            from urllib.parse import urlparse, unquote, parse_qs
             url = urlparse(DATABASE_URL)
+            
+            user = unquote(url.username) if url.username else None
+            password = unquote(url.password) if url.password else None
+            database = url.path.lstrip('/')
+            
+            # Parse query parameters for ssl configuration
+            query_params = parse_qs(url.query)
+            ssl_mode_param = query_params.get('ssl-mode', ['PREFERRED'])[0]
+            
+            # Force SSL REQUIRED if hosting on Aiven or if requested in parameters
+            if 'aivencloud' in (url.hostname or '').lower() or ssl_mode_param.upper() == 'REQUIRED':
+                ssl_mode = 'REQUIRED'
+            else:
+                ssl_mode = 'PREFERRED'
+
             db_conn = mysql.connector.connect(
                 host=url.hostname,
                 port=url.port or 3306,
-                user=url.username,
-                password=url.password,
-                database=url.path.lstrip('/')
+                user=user,
+                password=password,
+                database=database,
+                ssl_mode=ssl_mode
             )
             return db_conn
         except Exception as e:
             print(f"Error parsing DATABASE_URL: {e}. Falling back to default config.")
     
-    # Fallback to individual env vars
+    # Fallback to individual env vars (e.g. local)
     return mysql.connector.connect(
         host=DB_HOST,
         user=DB_USER,
