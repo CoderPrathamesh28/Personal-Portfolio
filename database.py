@@ -38,13 +38,17 @@ def get_db_connection():
             else:
                 ssl_mode = 'PREFERRED'
 
+            ssl_args = {}
+            if 'aivencloud' in (url.hostname or '').lower() or ssl_mode_param.upper() == 'REQUIRED':
+                ssl_args['ssl_disabled'] = False
+
             db_conn = mysql.connector.connect(
                 host=url.hostname,
                 port=url.port or 3306,
                 user=user,
                 password=password,
                 database=database,
-                ssl_mode=ssl_mode
+                **ssl_args
             )
             return db_conn
         except Exception as e:
