@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Portfolio Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="admin-body">
+
+    <!-- LOGIN PANEL (Visible when not authenticated) -->
+    <div class="admin-login-container" id="login-panel">
+        <div class="admin-login-card">
+            <h2 class="section-title" style="margin-bottom: 0.5rem;">Admin Access</h2>
+            <p class="section-subtitle" style="margin-bottom: 2rem; font-size: 0.95rem;">Login to manage your portfolio databases</p>
+            
+            <form class="contact-form" id="login-form">
+                <div class="form-status" id="login-status-box"></div>
+                
+                <div class="form-group" id="group-username">
+                    <label for="admin-username" class="form-label">Username</label>
+                    <input type="text" id="admin-username" class="form-input" required autocomplete="username">
+                </div>
+                
+                <div class="form-group" id="group-password">
+                    <label for="admin-password" class="form-label">Password</label>
+                    <input type="password" id="admin-password" class="form-input" required autocomplete="current-password">
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="btn-login">
+                    Access Dashboard <i class="fa-solid fa-lock-open"></i>
+                </button>
+            </form>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="/" class="project-link" style="font-size: 0.95rem;"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD PANEL (Visible when authenticated) -->
+    <div id="dashboard-panel" style="display: none;">
+        <!-- Admin Navigation Header -->
+        <header class="admin-header">
+            <a href="/" class="logo">
+                DEV<span>PORTFOLIO</span> <span style="font-size: 0.8rem; background: var(--primary); padding: 0.2rem 0.6rem; border-radius: 50px;">Admin</span>
+            </a>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <span style="color: var(--text-secondary);"><i class="fa-solid fa-user-shield"></i> Logged in as: <strong id="admin-user-display" style="color: var(--text-primary);">admin</strong></span>
+                <button class="btn btn-secondary btn-sm" id="btn-logout">Logout <i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+        </header>
+
+        <!-- Admin Main Content -->
+        <main class="admin-main">
+            <div class="container">
+                <!-- Stats row -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+                        <div class="stat-info">
+                            <h3 id="stat-projects-count">0</h3>
+                            <p>Total Projects</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                        <div class="stat-info">
+                            <h3 id="stat-messages-count">0</h3>
+                            <p>Inbox Messages</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="stat-info">
+                            <h3 id="stat-skills-count">0</h3>
+                            <p>Skills Tracked</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Grid (Projects & Messages) -->
+                <div class="admin-grid">
+                    <!-- Projects Management -->
+                    <div class="admin-section-card">
+                        <div class="admin-section-header">
+                            <h2>Manage Projects</h2>
+                            <button class="btn btn-primary btn-sm" id="btn-open-add-modal"><i class="fa-solid fa-plus"></i> Add Project</button>
+                        </div>
+                        <div class="data-table-container">
+                            <table class="data-table" id="admin-projects-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Technologies</th>
+                                        <th style="text-align: right;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-projects-list">
+                                    <!-- Dynamic rows -->
+                                    <tr>
+                                        <td colspan="4" style="text-align: center; color: var(--text-secondary); padding: 2rem;">
+                                            <i class="fa-solid fa-spinner fa-spin"></i> Loading projects list...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Client Inquiries / Messages -->
+                    <div class="admin-section-card">
+                        <div class="admin-section-header">
+                            <h2>Inbox Messages</h2>
+                            <span id="unread-badge" style="background: var(--error); padding: 0.1rem 0.5rem; border-radius: 50px; font-size: 0.75rem; display: none;">New</span>
+                        </div>
+                        <div class="message-list" id="admin-messages-list">
+                            <!-- Dynamic messages -->
+                            <div style="text-align: center; color: var(--text-secondary); padding: 2rem;">
+                                <i class="fa-solid fa-spinner fa-spin"></i> Loading inbox...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ADD / EDIT PROJECT MODAL -->
+    <div class="modal-overlay" id="project-form-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="project-modal-title">Add New Project</h3>
+                <button class="modal-close" id="btn-close-project-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="project-admin-form">
+                    <input type="hidden" id="form-project-id" name="project_id">
+                    
+                    <div class="form-group" id="admin-group-title">
+                        <label for="form-title" class="form-label">Project Title</label>
+                        <input type="text" id="form-title" name="title" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" id="admin-group-category">
+                            <label for="form-category" class="form-label">Category</label>
+                            <input type="text" id="form-category" name="category" class="form-input" placeholder="e.g. Web App, AI & ML" required>
+                        </div>
+                        <div class="form-group" id="admin-group-tech">
+                            <label for="form-tech" class="form-label">Technologies (comma-separated)</label>
+                            <input type="text" id="form-tech" name="technologies" class="form-input" placeholder="e.g. React, Node.js, MySQL" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="admin-group-image">
+                        <label for="form-image-url" class="form-label">Image URL</label>
+                        <input type="text" id="form-image-url" name="image_url" class="form-input" placeholder="/static/images/placeholder.jpg">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" id="admin-group-live">
+                            <label for="form-live-url" class="form-label">Live Preview URL</label>
+                            <input type="url" id="form-live-url" name="live_url" class="form-input" placeholder="https://example.com">
+                        </div>
+                        <div class="form-group" id="admin-group-github">
+                            <label for="form-github-url" class="form-label">GitHub Repo URL</label>
+                            <input type="url" id="form-github-url" name="github_url" class="form-input" placeholder="https://github.com/...">
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="admin-group-desc">
+                        <label for="form-desc" class="form-label">Description</label>
+                        <textarea id="form-desc" name="description" class="form-textarea" required></textarea>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+                        <button type="button" class="btn btn-secondary btn-sm" id="btn-cancel-project-form">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm" id="btn-save-project">Save Project</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>

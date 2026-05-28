@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio | Software Developer</title>
+    <meta name="description" content="Explore my personal portfolio showcasing full-stack projects, software developments, coding skills, and contact details. Built with Flask, MySQL, and Vanilla JS.">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts import via CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+    <!-- Background Decorative Blobs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="header" id="main-header">
+        <div class="container nav-container">
+            <a href="#" class="logo" id="nav-logo">
+                DEV<span>PORTFOLIO</span><div class="logo-dot"></div>
+            </a>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="nav-link active" id="link-home">Home</a></li>
+                    <li><a href="#about" class="nav-link" id="link-about">About</a></li>
+                    <li><a href="#skills" class="nav-link" id="link-skills">Skills</a></li>
+                    <li><a href="#projects" class="nav-link" id="link-projects">Projects</a></li>
+                    <li><a href="#contact" class="nav-link" id="link-contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menu-toggle-btn" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero section" id="home">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-subtitle">Welcome to my space</div>
+                <h1 class="hero-title">Hi, I'm a <span class="gradient-text" id="typing-text">Developer</span></h1>
+                <p class="hero-desc">I design and engineer clean, scalable, and highly interactive full-stack applications. Welcome to my web space where database integration meets beautiful responsive design.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary" id="hero-cta-projects">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-secondary" id="hero-cta-contact">Let's Connect</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-shape-container">
+                    <div class="hero-glow-ring"></div>
+                    <div class="hero-shape">
+                        <div class="hero-shape-overlay" style="padding: 0; overflow: hidden;">
+                            <img src="/static/images/profile.jpg" alt="Coder Prathamesh" class="hero-avatar-image" id="hero-avatar-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">A brief overview of who I am, my core mission, and my professional timeline.</p>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am a passionate Full-Stack Developer with a strong foundation in both frontend design principles and backend systems implementation. My target is to construct efficient, secure, and intuitive web solutions that resolve real-world problems.</p>
+                    <p>My tech stack focuses on Python (Flask/Django), JavaScript (React), and relational databases like MySQL/PostgreSQL. I love automating workflows, optimizing database queries, and styling sleek dark-themed dashboards.</p>
+                    <a href="#contact" class="btn btn-primary btn-sm" id="about-cta-hire">Work With Me</a>
+                </div>
+                <div class="about-timeline">
+                    <div class="timeline" id="experience-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 - Present</div>
+                            <h3 class="timeline-title">Full-Stack Software Engineer</h3>
+                            <div class="timeline-company">Innovative Web Solutions</div>
+                            <p class="timeline-desc" style="color: var(--text-secondary);">Designing and maintaining API architectures, refactoring legacy databases, and styling custom administrative dashboards.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 - 2024</div>
+                            <h3 class="timeline-title">Junior Developer</h3>
+                            <div class="timeline-company">TechCore Labs</div>
+                            <p class="timeline-desc" style="color: var(--text-secondary);">Assisted in developing Python-based web crawlers, integrating public Rest APIs, and implementing UI interface updates.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019 - 2022</div>
+                            <h3 class="timeline-title">Bachelor of Computer Applications</h3>
+                            <div class="timeline-company">University of Computer Science</div>
+                            <p class="timeline-desc" style="color: var(--text-secondary);">Graduated with honors, focusing on database architectures, Object-Oriented Programming, and algorithm optimization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <p class="section-subtitle">Here are the technologies and tools that I specialize in and use on a daily basis.</p>
+            <div class="skills-grid" id="skills-container">
+                <!-- Skills will be dynamically populated here -->
+                <div class="skills-category">
+                    <h3 class="category-title"><i class="fa-solid fa-code"></i> Frontend</h3>
+                    <div class="skill-item">
+                        <div class="skill-info"><span class="skill-name">HTML5 & CSS3</span><span class="skill-percentage">95%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span class="skill-name">JavaScript</span><span class="skill-percentage">80%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h3 class="category-title"><i class="fa-solid fa-server"></i> Backend</h3>
+                    <div class="skill-item">
+                        <div class="skill-info"><span class="skill-name">Python & Flask</span><span class="skill-percentage">85%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span class="skill-name">C & C++ Programming</span><span class="skill-percentage">90%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span class="skill-name">Java</span><span class="skill-percentage">80%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span class="skill-name">Node.js & Express</span><span class="skill-percentage">65%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 65%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects Showcase</h2>
+            <p class="section-subtitle">A curated collection of web applications, AI models, and software tools I have developed.</p>
+            
+            <!-- Category Filter Tabs -->
+            <div class="projects-filter" id="projects-filter-container">
+                <button class="filter-btn active" data-filter="all" id="filter-all">All</button>
+                <button class="filter-btn" data-filter="web app" id="filter-web">Web Apps</button>
+                <button class="filter-btn" data-filter="ai & ml" id="filter-ai">AI & ML</button>
+                <button class="filter-btn" data-filter="frontend" id="filter-front">Frontend</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-grid" id="projects-grid">
+                <!-- Projects will be fetched and dynamically populated here -->
+                <div style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 3rem;">
+                    <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
+                    <p style="margin-top: 1rem;">Loading projects...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Interested in collaborating or just want to say hi? Fill out the form below or reach out directly.</p>
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h3 class="contact-info-title">Contact Information</h3>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="contact-method-text">
+                            <h4>Email Me</h4>
+                            <p>coderprathamesh28@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="contact-method-text">
+                            <h4>Location</h4>
+                            <p>Nagpur, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/CoderPrathamesh28" target="_blank" class="social-icon" aria-label="GitHub Profile"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://linkedin.com/in/coderprathamesh" target="_blank" class="social-icon" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/coderprathamesh" target="_blank" class="social-icon" aria-label="Instagram Profile"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <!-- AJAX contact form -->
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-status" id="contact-status-box"></div>
+                        
+                        <div class="form-row">
+                            <div class="form-group" id="group-name">
+                                <label for="contact-name" class="form-label">Full Name</label>
+                                <input type="text" id="contact-name" name="name" class="form-input" required>
+                            </div>
+                            <div class="form-group" id="group-email">
+                                <label for="contact-email" class="form-label">Email Address</label>
+                                <input type="email" id="contact-email" name="email" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="group-subject">
+                            <label for="contact-subject" class="form-label">Subject</label>
+                            <input type="text" id="contact-subject" name="subject" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group" id="group-message">
+                            <label for="contact-message" class="form-label">Your Message</label>
+                            <textarea id="contact-message" name="message" class="form-textarea" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" id="btn-submit-contact">
+                            Send Message <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2026 Developer Portfolio. All rights reserved.</p>
+            <ul class="footer-nav">
+                <li><a href="#home" class="footer-nav-link">Home</a></li>
+                <li><a href="#about" class="footer-nav-link">About</a></li>
+                <li><a href="#projects" class="footer-nav-link">Projects</a></li>
+                <li><a href="/admin" class="footer-nav-link">Admin Portal</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- PROJECT DETAIL MODAL -->
+    <div class="modal-overlay" id="project-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-project-title">Project Details</h3>
+                <button class="modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="project-detail-layout">
+                    <img src="/static/images/placeholder.jpg" alt="Project image" class="project-detail-img" id="modal-project-img">
+                    <div class="project-tags" id="modal-project-tags">
+                        <!-- Tags inserted dynamically -->
+                    </div>
+                    <p class="project-detail-desc" id="modal-project-desc">Project description goes here.</p>
+                    <div class="project-links" id="modal-project-links">
+                        <!-- Links inserted dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Frontend JavaScript -->
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
